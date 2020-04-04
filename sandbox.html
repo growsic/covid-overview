@@ -1,0 +1,117 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<div id="app">
+  <div id="firstChart"></div>
+</div>
+
+<script>
+
+function drawFisrtChart(countryInfoList) {
+  var options = {
+    series: [
+      {
+        name: "total",
+        data: []
+      },
+      {
+        name: "deaths",
+
+        data: []
+      },
+    ],
+    chart: {
+      type: "bar",
+      width: "100%",
+      height: countryInfoList.length * 100,
+      background: '#fff'
+    },
+    colors: ["#008FFB", "#FF4560"],
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        barHeight: '100%',
+        dataLabels: {
+          position: 'bottom'
+        },
+
+      },
+    },
+    stroke: {
+      width: 1,
+      colors: ['#fff']
+    },
+    dataLabels: {
+      offsetX: 1,
+      dropShadow: {
+        enabled: true,
+         opacity: 0.6
+      },
+      style: {
+        colors: ['#fff']
+      },
+    },
+    title: {
+        text: 'title',
+        align: 'center',
+        floating: true
+    },
+    subtitle: {
+        text: 'subtitle',
+        align: 'center',
+    },
+    xaxis: {
+      categories: [],
+      style: {
+       colors: [],
+       fontSize: '30px',
+       fontFamily: 'Helvetica, Arial, sans-serif',
+       fontWeight: 400,
+       cssClass: 'apexcharts-xaxis-label',
+      },
+    },
+}
+
+countryInfoList.forEach(countryInfo => {
+  options.xaxis.categories.push(countryInfo.country);
+  options.series[0].data.push(countryInfo.cases.total);
+  options.series[1].data.push(countryInfo.deaths.total);
+});
+
+var chart = new ApexCharts(document.querySelector("#firstChart"), options);
+
+chart.render();
+}
+
+</script>
+
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    countryInfoList: [],
+    summery: null
+  },
+  mounted () {
+    axios
+      .get('https://covid-193.p.rapidapi.com/statistics',  {headers: {
+        "x-rapidapi-host": "covid-193.p.rapidapi.com",
+        "x-rapidapi-key": "6351089e97mshd70d80573520055p1d9190jsn4f1938e461c0"
+      }})
+      .then(response => {
+        response.data.response.forEach(dto => {
+            var tmpList = [];
+            if(dto.country == 'World' || dto.country == 'All') {
+                this.summery = dto;
+                console.log(dto)
+            } else {
+              this.countryInfoList.push(dto);
+            }
+        })
+        this.countryInfoList.sort((a, b) => (b.cases.total > a.cases.total) ? 1 : -1)
+        drawFisrtChart(this.countryInfoList.slice(0, 19));
+      })
+  }
+
+})
+</script>
