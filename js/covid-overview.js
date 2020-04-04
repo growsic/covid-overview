@@ -2,7 +2,7 @@ var app = new Vue({
   el: '#app',
   data: {
     countryInfoList: [],
-    summery: null
+    summary: null
   },
   mounted () {
     axios
@@ -14,7 +14,7 @@ var app = new Vue({
         response.data.response.forEach(dto => {
             var tmpList = [];
             if(dto.country == 'World' || dto.country == 'All') {
-                this.summery = dto;
+                this.summary = dto;
                 console.log(dto)
             } else {
               this.countryInfoList.push(dto);
