@@ -52,6 +52,47 @@
           </div>
           <!-- /death -->
       </div>
+      <div class="infection-num-table group">
+          <h1 class="heading">
+              JAPAN
+          </h1>
+
+          <!-- total -->
+          <div class="block total fl">
+              <h2 class="title">total</h2>
+              <!-- CONTENT -->
+              <div class="content">
+                  <p class="price">
+                      <span v-if="japanIfo != null">{{ japanIfo.cases.total }}</span>
+                      <p v-if="japanIfo != null">{{ japanIfo.cases.new }}</p>
+                  </p>
+              </div>
+          </div>
+          <div class="block active fl">
+              <h2 class="title">active</h2>
+              <!-- CONTENT -->
+              <div class="content">
+                  <p class="price">
+                    <span v-if="japanIfo != null">{{ japanIfo.cases.active }}</span>
+                    <p v-if="japanIfo != null">critical: {{ japanIfo.cases.critical }}</p>
+                  </p>
+              </div>
+          </div>
+          <!-- /active -->
+          <!-- death -->
+          <div class="block death fl">
+              <h2 class="title">death</h2>
+              <!-- CONTENT -->
+              <div class="content">
+                  <p class="price">
+                    <span v-if="japanIfo != null">{{ japanIfo.deaths.total }}</span>
+                    <p v-if="japanIfo != null">{{ japanIfo.deaths.new }}</p>
+                  </p>
+              </div>
+              <!-- /PT-FOOTER -->
+          </div>
+          <!-- /death -->
+      </div>
       <!-- /infection-num-table -->
   </div>
   <h1 class="heading">

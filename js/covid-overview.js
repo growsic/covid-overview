@@ -16,12 +16,19 @@ var app = new Vue({
             if(dto.country == 'World' || dto.country == 'All') {
                 this.summary = dto;
                 console.log(dto)
+            } else if (dto.country == 'JAPAN') {
+              console.log(dto)
             } else {
               this.countryInfoList.push(dto);
             }
         })
         this.countryInfoList.sort((a, b) => (b.cases.total > a.cases.total) ? 1 : -1)
-        drawFisrtChart(this.countryInfoList.slice(0, 9));
+        drawFisrtChart(this.countryInfoList.slice(10, 19));
       })
+  },
+  computed: {
+    japanIfo: function () {
+      return this.countryInfoList.filter(dto => dto.country == 'Japan')[0]
+    }
   }
 })
