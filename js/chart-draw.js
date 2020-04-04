@@ -14,8 +14,8 @@ function drawFisrtChart(countryInfoList) {
     ],
     chart: {
       type: "bar",
-      width: "80%",
-      height: countryInfoList.length * 100,
+      width: "100%",
+      height: countryInfoList.length * 80,
       background: '#F2F2F2'
     },
     colors: ["#3EC6E0", "#FF4560"],
@@ -43,15 +43,6 @@ function drawFisrtChart(countryInfoList) {
         colors: ['#fff'],
         fontSize: '20px',
       },
-    },
-    title: {
-        text: 'title',
-        align: 'center',
-        floating: true
-    },
-    subtitle: {
-        text: 'subtitle',
-        align: 'center',
     },
     xaxis: {
       categories: [],

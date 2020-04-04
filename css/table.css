@@ -41,9 +41,8 @@ body {
     padding-right: 0;
 }
 
-.infection-num-table .heading{
+.heading{
     color: #9C9E9F;
-    text-transform: uppercase;
     font-size: 1.3rem;
     margin-bottom: 1rem;
 }
