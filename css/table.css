@@ -2,17 +2,7 @@
 Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-infection-num-table?list=tags&tag=pricing_table
 */
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
+
 /*------ utiltity classes -----*/
 .fl{ float:left; }
 .fr{ float: right; }
@@ -29,6 +19,7 @@ Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-infe
     zoom: 1;  /*For IE 6/7 (trigger hasLayout) */
 }
 
+
 body {
     background: #F2F2F2;
     font-family: 'Droid Sans', sans-serif;
@@ -38,13 +29,18 @@ body {
 .wrapper {
 
 }
+.title {
+  margin: 0;
+}
 .infection-num-table {
-    width: 80%;
+    width: 100%;
+    max-width: 1000px;
     margin: 50px auto;
     text-align: center;
     padding: 10px;
     padding-right: 0;
 }
+
 .infection-num-table .heading{
     color: #9C9E9F;
     text-transform: uppercase;
@@ -53,7 +49,7 @@ body {
 }
 .block{
     width: 30%;
-    margin: 0 15px;
+    margin-left: 15px;
     overflow: hidden;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -70,7 +66,11 @@ body {
 .content{
     position: relative;
     color: #FEFEFE;
-    padding: 20px 0 10px 0;
+    padding: 15px 0 5px 0;
+}
+
+.content p{
+    margin-top: 2px;
 }
 /*arrow creation*/
 .content:after, .content:before,.pt-footer:before,.pt-footer:after {
@@ -95,7 +95,7 @@ body {
 .price{
     position: relative;
     display: inline-block;
-    margin-bottom: 0.625rem;
+    /* margin-bottom: 0.625rem; */
 }
 .price span{
     font-size: 2rem;

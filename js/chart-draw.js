@@ -14,7 +14,7 @@ function drawFisrtChart(countryInfoList) {
     ],
     chart: {
       type: "bar",
-      width: "100%",
+      width: "80%",
       height: countryInfoList.length * 100,
       background: '#F2F2F2'
     },
@@ -34,13 +34,14 @@ function drawFisrtChart(countryInfoList) {
       colors: ['#fff']
     },
     dataLabels: {
-      offsetX: 1,
+      offsetX: 10,
       dropShadow: {
         enabled: true,
          opacity: 0.6
       },
       style: {
-        colors: ['#fff']
+        colors: ['#fff'],
+        fontSize: '20px',
       },
     },
     title: {
