@@ -54,14 +54,20 @@ function drawFisrtChart(countryInfoList) {
     },
     xaxis: {
       categories: [],
-      style: {
-       colors: [],
-       fontSize: '30px',
-       fontFamily: 'Helvetica, Arial, sans-serif',
-       fontWeight: 400,
-       cssClass: 'apexcharts-xaxis-label',
-      },
+      labels:{
+        style: {
+           fontSize: '20px',
+       }
+      }
     },
+    yaxis: {
+      categories: [],
+      labels:{
+        style: {
+           fontSize: '20px',
+       }
+      }
+    }
 }
 
 countryInfoList.forEach(countryInfo => {
