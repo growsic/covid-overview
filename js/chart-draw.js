@@ -16,9 +16,9 @@ function drawFisrtChart(countryInfoList) {
       type: "bar",
       width: "100%",
       height: countryInfoList.length * 100,
-      background: '#fff'
+      background: '#F2F2F2'
     },
-    colors: ["#008FFB", "#FF4560"],
+    colors: ["#3EC6E0", "#FF4560"],
     plotOptions: {
       bar: {
         horizontal: true,
