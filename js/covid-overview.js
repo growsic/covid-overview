@@ -38,14 +38,14 @@ var app = new Vue({
         this.rankingTo = this.rankingFrom - 1;
         this.rankingFrom -= COUNTRIES_PER_PAGE;
       }
-      reDrawChart(this.countryInfoList.slice(this.rankingFrom, this.rankingTo))
+      reDrawChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo))
     },
     drawChartWithNext: function() {
       if(this.countryInfoList.length == this.rankingTo) {
         // already achieved to max page
         return;
       }
-      if(this.countryInfoList.length - 1 <= this.rankingTo + COUNTRIES_PER_PAGE) {
+      if(this.countryInfoList.length < this.rankingTo + COUNTRIES_PER_PAGE) {
         this.rankingFrom = this.rankingTo + 1;
         this.rankingTo = this.countryInfoList.length;
       } else {
