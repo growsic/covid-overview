@@ -1,3 +1,4 @@
+var chart = null;
 
 function drawFisrtChart(countryInfoList) {
   var options = {
@@ -53,7 +54,6 @@ function drawFisrtChart(countryInfoList) {
       }
     },
     yaxis: {
-      categories: [],
       labels:{
         style: {
            fontSize: '20px',
@@ -62,13 +62,51 @@ function drawFisrtChart(countryInfoList) {
     }
 }
 
-countryInfoList.forEach(countryInfo => {
-  options.xaxis.categories.push(countryInfo.country);
-  options.series[0].data.push(countryInfo.cases.total);
-  options.series[1].data.push(countryInfo.deaths.total);
-});
+  chart = new ApexCharts(document.querySelector("#firstChart"), options);
 
-var chart = new ApexCharts(document.querySelector("#firstChart"), options);
+  countryInfoList.forEach(countryInfo => {
+    options.xaxis.categories.push(countryInfo.country);
+    options.series[0].data.push(countryInfo.cases.total);
+    options.series[1].data.push(countryInfo.deaths.total);
+  });
 
-chart.render();
+
+  chart.render();
+}
+
+function reDrawChart(countryInfoList){
+  var newOption = {
+    series: [
+      {
+        name: "total",
+        data: []
+      },
+      {
+        name: "deaths",
+
+        data: []
+      },
+    ],
+    chart: {
+      type: "bar",
+      width: "100%",
+      height: countryInfoList.length * 80,
+      background: '#F2F2F2'
+    },
+    xaxis: {
+      categories: [],
+      labels:{
+        style: {
+           fontSize: '20px',
+       }
+      }
+    }
+}
+  countryInfoList.forEach(countryInfo => {
+    newOption.xaxis.categories.push(countryInfo.country);
+    newOption.series[0].data.push(countryInfo.cases.total);
+    newOption.series[1].data.push(countryInfo.deaths.total);
+  });
+  chart.updateOptions(newOption)
+
 }

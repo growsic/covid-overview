@@ -23,7 +23,7 @@ var app = new Vue({
             }
         })
         this.countryInfoList.sort((a, b) => (b.cases.total > a.cases.total) ? 1 : -1)
-        drawFisrtChart(this.countryInfoList.slice(10, 19));
+        drawFisrtChart(this.countryInfoList.slice(0, 9));
       })
   },
   computed: {
