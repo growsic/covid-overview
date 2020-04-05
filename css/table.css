@@ -169,10 +169,14 @@ body {
 
 }
 
+.cursor-button {
+    font-size: 24px;
+}
+
 .cursor-button a {
     text-decoration: none;
     display: inline-block;
-    padding: 8px 16px;
+
 }
 
 .cursor-button a:hover {
@@ -185,6 +189,7 @@ body {
     float: left;
     margin-left: 50px;
     color: white;
+    padding: 8px 16px;
 }
 
 .cursor-button .next {
@@ -192,6 +197,7 @@ body {
     float: right;
     margin-right: 50px;
     color: white;
+    padding: 8px 42px;
 }
 
 .header {
