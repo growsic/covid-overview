@@ -26,6 +26,7 @@ var app = new Vue({
                   this.summary = dto;
               } else if (dto.country == 'Japan') {
                   this.japanInfo = dto;
+                  this.countryInfoList.push(dto);
               } else {
                 this.countryInfoList.push(dto);
               }
