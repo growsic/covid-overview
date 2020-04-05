@@ -26,33 +26,33 @@ var app = new Vue({
             }
         })
         this.countryInfoList.sort((a, b) => (b.cases.total > a.cases.total) ? 1 : -1)
-        drawFisrtChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo));
+        initCountryRankingChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo));
       })
   },
   methods:{
-    drawChartWithPrevious: function() {
-      if(this.rankingFrom - COUNTRIES_PER_PAGE < 0) {
-        this.rankingTo = COUNTRIES_PER_PAGE;
-        this.rankingFrom = 1;
-      } else {
-        this.rankingTo = this.rankingFrom - 1;
-        this.rankingFrom -= COUNTRIES_PER_PAGE;
+      drawChartWithPrevious: function() {
+        if(this.rankingFrom - COUNTRIES_PER_PAGE < 0) {
+          this.rankingTo = COUNTRIES_PER_PAGE;
+          this.rankingFrom = 1;
+        } else {
+          this.rankingTo = this.rankingFrom - 1;
+          this.rankingFrom -= COUNTRIES_PER_PAGE;
+        }
+        reDrawCountryRankingChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo))
+      },
+      drawChartWithNext: function() {
+        if(this.countryInfoList.length == this.rankingTo) {
+          // already achieved to max page
+          return;
+        }
+        if(this.countryInfoList.length < this.rankingTo + COUNTRIES_PER_PAGE) {
+          this.rankingFrom = this.rankingTo + 1;
+          this.rankingTo = this.countryInfoList.length;
+        } else {
+          this.rankingFrom = this.rankingTo + 1;
+          this.rankingTo += COUNTRIES_PER_PAGE;
+        }
+        reDrawCountryRankingChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo), this.rankingFrom, this.rankingTo)
       }
-      reDrawChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo))
-    },
-    drawChartWithNext: function() {
-      if(this.countryInfoList.length == this.rankingTo) {
-        // already achieved to max page
-        return;
-      }
-      if(this.countryInfoList.length < this.rankingTo + COUNTRIES_PER_PAGE) {
-        this.rankingFrom = this.rankingTo + 1;
-        this.rankingTo = this.countryInfoList.length;
-      } else {
-        this.rankingFrom = this.rankingTo + 1;
-        this.rankingTo += COUNTRIES_PER_PAGE;
-      }
-      reDrawChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo), this.rankingFrom, this.rankingTo)
-    }
     }
 })
