@@ -1,8 +1,12 @@
+const COUNTRIES_PER_PAGE = 10;
 var app = new Vue({
   el: '#app',
   data: {
     countryInfoList: [],
-    summary: null
+    summary: null,
+    japanInfo: null,
+    rankingFrom: 1,
+    rankingTo: 10
   },
   mounted () {
     axios
@@ -15,20 +19,40 @@ var app = new Vue({
             var tmpList = [];
             if(dto.country == 'World' || dto.country == 'All') {
                 this.summary = dto;
-                console.log(dto)
-            } else if (dto.country == 'JAPAN') {
-              console.log(dto)
+            } else if (dto.country == 'Japan') {
+                this.japanInfo = dto;
             } else {
               this.countryInfoList.push(dto);
             }
         })
         this.countryInfoList.sort((a, b) => (b.cases.total > a.cases.total) ? 1 : -1)
-        drawFisrtChart(this.countryInfoList.slice(0, 9));
+        drawFisrtChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo));
       })
   },
-  computed: {
-    japanIfo: function () {
-      return this.countryInfoList.filter(dto => dto.country == 'Japan')[0]
+  methods:{
+    drawChartWithPrevious: function() {
+      if(this.rankingFrom - COUNTRIES_PER_PAGE < 0) {
+        this.rankingTo = COUNTRIES_PER_PAGE;
+        this.rankingFrom = 1;
+      } else {
+        this.rankingTo = this.rankingFrom - 1;
+        this.rankingFrom -= COUNTRIES_PER_PAGE;
+      }
+      reDrawChart(this.countryInfoList.slice(this.rankingFrom, this.rankingTo))
+    },
+    drawChartWithNext: function() {
+      if(this.countryInfoList.length == this.rankingTo) {
+        // already achieved to max page
+        return;
+      }
+      if(this.countryInfoList.length - 1 <= this.rankingTo + COUNTRIES_PER_PAGE) {
+        this.rankingFrom = this.rankingTo + 1;
+        this.rankingTo = this.countryInfoList.length;
+      } else {
+        this.rankingFrom = this.rankingTo + 1;
+        this.rankingTo += COUNTRIES_PER_PAGE;
+      }
+      reDrawChart(this.countryInfoList.slice(this.rankingFrom - 1, this.rankingTo), this.rankingFrom, this.rankingTo)
     }
-  }
+    }
 })

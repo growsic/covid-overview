@@ -69,10 +69,9 @@ function drawFisrtChart(countryInfoList) {
     options.series[0].data.push(countryInfo.cases.total);
     options.series[1].data.push(countryInfo.deaths.total);
   });
-
-
   chart.render();
 }
+
 
 function reDrawChart(countryInfoList){
   var newOption = {

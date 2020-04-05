@@ -63,8 +63,8 @@
               <!-- CONTENT -->
               <div class="content">
                   <p class="price">
-                      <span v-if="japanIfo != null">{{ japanIfo.cases.total }}</span>
-                      <p v-if="japanIfo != null">{{ japanIfo.cases.new }}</p>
+                      <span v-if="japanInfo != null">{{ japanInfo.cases.total }}</span>
+                      <p v-if="japanInfo != null">{{ japanInfo.cases.new }}</p>
                   </p>
               </div>
           </div>
@@ -73,8 +73,8 @@
               <!-- CONTENT -->
               <div class="content">
                   <p class="price">
-                    <span v-if="japanIfo != null">{{ japanIfo.cases.active }}</span>
-                    <p v-if="japanIfo != null">critical: {{ japanIfo.cases.critical }}</p>
+                    <span v-if="japanInfo != null">{{ japanInfo.cases.active }}</span>
+                    <p v-if="japanInfo != null">critical: {{ japanInfo.cases.critical }}</p>
                   </p>
               </div>
           </div>
@@ -85,8 +85,8 @@
               <!-- CONTENT -->
               <div class="content">
                   <p class="price">
-                    <span v-if="japanIfo != null">{{ japanIfo.deaths.total }}</span>
-                    <p v-if="japanIfo != null">{{ japanIfo.deaths.new }}</p>
+                    <span v-if="japanInfo != null">{{ japanInfo.deaths.total }}</span>
+                    <p v-if="japanInfo != null">{{ japanInfo.deaths.new }}</p>
                   </p>
               </div>
               <!-- /PT-FOOTER -->
@@ -96,11 +96,11 @@
       <!-- /infection-num-table -->
   </div>
   <h1 class="heading">
-      Top 10 Countries With Highest Number Of Coronavirus Case
+      Top {{ rankingFrom }} to {{ rankingTo }} Countries With Highest Number Of Coronavirus Case
   </h1>
   <div class="cursor-button">
-    <a href="#" class="previous">&laquo; previous</a>
-    <a href="#" class="next">next &raquo;</a>
+    <a v-on:click="drawChartWithPrevious" class="previous">&laquo; previous</a>
+    <a v-on:click="drawChartWithNext" class="next">next &raquo;</a>
   </div>
     <br/><br/>
   </div>
