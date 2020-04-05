@@ -44,8 +44,8 @@ body {
 .heading{
     color: #9C9E9F;
     text-align: center;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 2.0rem;
+    margin-bottom: 2rem;
 }
 .block{
     width: 30%;
@@ -218,7 +218,7 @@ body {
 }
 
 .header a.logo {
-  font-size: 25px;
+  font-size: 2rem;
   font-weight: bold;
   color: #696969;
 }
