@@ -176,19 +176,19 @@ body {
 }
 
 .cursor-button a:hover {
-    background-color: #989898;
+    background-color: #ddd;
     color: white;
 }
 
 .cursor-button .previous {
-    background-color: #ddd;
+    background-color: #989898;
     float: left;
     margin-left: 50px;
     color: white;
 }
 
 .cursor-button .next {
-    background-color: #ddd;
+    background-color: #989898;
     float: right;
     margin-right: 50px;
     color: white;
